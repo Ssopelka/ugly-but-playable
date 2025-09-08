@@ -2,39 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* УБЛЮДСКИЙ ДИЗАЙН СИСТЕМА - МАКСИМАЛЬНО НЕПРИЯТНЫЕ ЦВЕТА */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 300 100% 25%; /* Ядовито фиолетовый */
+    --foreground: 60 100% 50%; /* Ядовито желтый */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 120 100% 25%; /* Ядовито зеленый */
+    --card-foreground: 0 100% 50%; /* Красный */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 240 100% 50%; /* Синий */
+    --popover-foreground: 30 100% 50%; /* Оранжевый */
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 0 100% 50%; /* Красный */
+    --primary-foreground: 60 100% 50%; /* Желтый */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 120 100% 50%; /* Зеленый */
+    --secondary-foreground: 300 100% 50%; /* Фиолетовый */
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 180 100% 50%; /* Циан */
+    --muted-foreground: 300 100% 25%; /* Темно фиолетовый */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 60 100% 50%; /* Желтый */
+    --accent-foreground: 240 100% 25%; /* Темно синий */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 100% 75%; /* Светло красный */
+    --destructive-foreground: 120 100% 25%; /* Темно зеленый */
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 300 100% 50%; /* Фиолетовый */
+    --input: 60 100% 75%; /* Светло желтый */
+    --ring: 0 100% 50%; /* Красный */
 
     --radius: 0.5rem;
 
@@ -56,8 +54,8 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 120 100% 10%; /* Темно зеленый */
+    --foreground: 0 100% 75%; /* Светло красный */
 
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
@@ -100,6 +98,62 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-mono;
+    cursor: crosshair;
+  }
+
+  /* УБЛЮДСКИЕ АНИМАЦИИ */
+  .blink {
+    animation: blink 0.5s infinite;
+  }
+
+  .shake {
+    animation: shake 0.3s infinite;
+  }
+
+  .rotate {
+    animation: rotate 2s linear infinite;
+  }
+
+  .rainbow {
+    animation: rainbow 1s linear infinite;
+  }
+
+  .glitch {
+    animation: glitch 0.1s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes rainbow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+  }
+
+  @keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-1px, 1px); }
+    40% { transform: translate(-1px, -1px); }
+    60% { transform: translate(1px, 1px); }
+    80% { transform: translate(1px, -1px); }
+  }
+
+  .game-canvas {
+    border: 5px solid;
+    border-image: linear-gradient(45deg, red, yellow, green, cyan, blue, magenta) 1;
   }
 }
