@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Tetris } from '@/components/games/Tetris';
 import { Pong } from '@/components/games/Pong';
+import { Zuma } from '@/components/games/Zuma';
 import { AnnoyingPopup, FloatingEmojis, BouncingButton } from '@/components/AnnoyingElements';
 import { Button } from '@/components/ui/button';
 
 const Index = () => {
-  const [currentGame, setCurrentGame] = useState<'none' | 'tetris' | 'pong'>('none');
+  const [currentGame, setCurrentGame] = useState<'none' | 'tetris' | 'pong' | 'zuma'>('none');
   const [showPopup, setShowPopup] = useState(true);
 
   useEffect(() => {
@@ -20,26 +21,26 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background p-4 relative overflow-x-hidden">
+    <div className="min-h-screen bg-background p-4 relative overflow-x-hidden container drunk">
       <FloatingEmojis />
       {showPopup && <AnnoyingPopup />}
       
       <div className="max-w-6xl mx-auto">
         {/* Ужасный заголовок */}
-        <div className="text-center mb-8">
-          <h1 className="text-6xl font-bold text-primary blink mb-4">
+        <div className="text-center mb-8 tilt-left wobble">
+          <h1 className="text-6xl font-bold text-primary blink mb-4 lag-physics">
             🎮 УБЛЮДСКИЙ ИГРОВОЙ ПОРТАЛ 🎮
           </h1>
-          <p className="text-2xl text-secondary shake mb-4">
+          <p className="text-2xl text-secondary shake mb-4 tilt-right">
             Добро пожаловать в АД игр! 😈
           </p>
-          <div className="text-lg text-accent rotate">
+          <div className="text-lg text-accent rotate drunk">
             ⚠️ ВНИМАНИЕ: Дизайн может вызвать рвоту! ⚠️
           </div>
         </div>
 
         {/* Кнопки выбора игры */}
-        <div className="flex justify-center gap-6 mb-8 flex-wrap">
+        <div className="flex justify-center gap-6 mb-8 flex-wrap tilt-right">
           <BouncingButton onClick={() => setCurrentGame('tetris')}>
             🟩 ТЕТРИС БОЛЬ 🟩
           </BouncingButton>
@@ -48,26 +49,31 @@ const Index = () => {
             🏓 ПОНГ СТРАДАНИЯ 🏓
           </BouncingButton>
           
+          <BouncingButton onClick={() => setCurrentGame('zuma')}>
+            🐍 ЗУМА КОШМАР 🐍
+          </BouncingButton>
+          
           <Button 
             onClick={() => setCurrentGame('none')}
             variant="secondary"
-            className="glitch"
+            className="glitch wobble"
           >
             ❌ НИЧЕГО ❌
           </Button>
         </div>
 
         {/* Игровая область */}
-        <div className="flex justify-center">
-          {currentGame === 'tetris' && <Tetris />}
-          {currentGame === 'pong' && <Pong />}
+        <div className="flex justify-center game-container">
+          {currentGame === 'tetris' && <div className="tilt-left"><Tetris /></div>}
+          {currentGame === 'pong' && <div className="tilt-right"><Pong /></div>}
+          {currentGame === 'zuma' && <div className="wobble"><Zuma /></div>}
           {currentGame === 'none' && (
-            <div className="text-center p-8 bg-card rounded-lg border-4 border-destructive">
-              <div className="text-4xl mb-4 rainbow">🎯</div>
-              <h3 className="text-2xl font-bold text-primary blink mb-4">
+            <div className="text-center p-8 bg-card rounded-lg border-4 border-destructive lag-physics">
+              <div className="text-4xl mb-4 rainbow drunk">🎯</div>
+              <h3 className="text-2xl font-bold text-primary blink mb-4 shake">
                 Выбери свои страдания!
               </h3>
-              <p className="text-lg text-muted-foreground shake">
+              <p className="text-lg text-muted-foreground shake wobble">
                 Нажми на одну из кнопок выше... если сможешь! 😈
               </p>
             </div>

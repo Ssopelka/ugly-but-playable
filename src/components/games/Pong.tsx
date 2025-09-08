@@ -40,6 +40,8 @@ export const Pong = () => {
     dx: 3,
     dy: 2
   });
+  
+  const [gameTime, setGameTime] = useState(0);
 
   const resetBall = useCallback(() => {
     setBall({
@@ -53,12 +55,17 @@ export const Pong = () => {
   const updateGame = useCallback(() => {
     if (!isPlaying) return;
 
+    setGameTime(prev => prev + 1);
+    
     setBall(prevBall => {
       let newBall = { ...prevBall };
       
+      // Ускорение шарика со временем
+      const speedMultiplier = 1 + (gameTime * 0.001);
+      
       // Move ball
-      newBall.x += newBall.dx;
-      newBall.y += newBall.dy;
+      newBall.x += newBall.dx * speedMultiplier;
+      newBall.y += newBall.dy * speedMultiplier;
       
       // Ball collision with top/bottom walls
       if (newBall.y <= 0 || newBall.y >= CANVAS_HEIGHT - BALL_SIZE) {
@@ -207,6 +214,7 @@ export const Pong = () => {
     setIsPlaying(true);
     setPlayerScore(0);
     setAiScore(0);
+    setGameTime(0);
     resetBall();
   };
 
