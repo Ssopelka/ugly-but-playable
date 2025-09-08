@@ -116,7 +116,7 @@
 
   /* УБЛЮДСКИЕ АНИМАЦИИ */
   .blink {
-    animation: blink 0.5s infinite;
+    animation: blink 2s infinite;
   }
 
   .shake {
@@ -156,8 +156,9 @@
   }
 
   @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
+    0%, 70% { opacity: 1; }
+    71%, 85% { opacity: 0.3; }
+    86%, 100% { opacity: 1; }
   }
 
   @keyframes shake {
