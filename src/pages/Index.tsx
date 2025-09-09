@@ -26,7 +26,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="h-screen bg-background p-2 relative overflow-hidden container drunk">
+    <div className="h-screen bg-background p-2 relative overflow-hidden container drunk tv-glitch scan-lines">
       <FloatingEmojis />
       {showPopup && <AnnoyingPopup />}
       
@@ -54,15 +54,15 @@ const Index = () => {
         </div>
 
         {/* Игровая область */}
-        <div className="flex justify-center game-container h-96 overflow-hidden">
-          {currentGame === 'tetris' && <div className="tilt-left"><Tetris /></div>}
-          {currentGame === 'pong' && <div className="tilt-right"><Pong /></div>}
-          {currentGame === 'zuma' && <div className="wobble"><Zuma /></div>}
-          {currentGame === 'snake' && <div className="lag-physics"><Snake /></div>}
-          {currentGame === 'breakout' && <div className="drunk"><Breakout /></div>}
-          {currentGame === 'memory' && <div className="shake"><Memory /></div>}
-          {currentGame === 'shooter' && <div className="glitch"><Shooter /></div>}
-          {currentGame === 'maze' && <div className="rotate"><Maze /></div>}
+        <div className="flex justify-center game-container min-h-[500px] w-full overflow-visible broken-tv">
+          {currentGame === 'tetris' && <div className="tilt-left broken-tv"><Tetris /></div>}
+          {currentGame === 'pong' && <div className="tilt-right tv-glitch"><Pong /></div>}
+          {currentGame === 'zuma' && <div className="wobble broken-tv"><Zuma /></div>}
+          {currentGame === 'snake' && <div className="lag-physics tv-glitch"><Snake /></div>}
+          {currentGame === 'breakout' && <div className="drunk broken-tv"><Breakout /></div>}
+          {currentGame === 'memory' && <div className="shake tv-glitch"><Memory /></div>}
+          {currentGame === 'shooter' && <div className="glitch broken-tv"><Shooter /></div>}
+          {currentGame === 'maze' && <div className="rotate tv-glitch"><Maze /></div>}
           {currentGame === 'none' && (
             <div className="text-center p-4 bg-card rounded-lg border-2 border-destructive lag-physics">
               <div className="text-2xl mb-2 rainbow drunk">🎯</div>

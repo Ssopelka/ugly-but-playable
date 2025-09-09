@@ -116,7 +116,47 @@
 
   /* УБЛЮДСКИЕ АНИМАЦИИ */
   .blink {
-    animation: blink 2s infinite;
+    animation: blink 1s infinite;
+  }
+
+  .broken-tv {
+    animation: broken-tv 0.2s infinite, static-noise 0.1s infinite;
+    filter: contrast(1.5) brightness(1.2);
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(255,0,0,0.03) 2px,
+      rgba(255,0,0,0.03) 4px,
+      transparent 4px
+    );
+  }
+
+  .tv-glitch {
+    animation: tv-glitch 0.3s infinite;
+  }
+
+  .scan-lines {
+    position: relative;
+  }
+
+  .scan-lines::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,255,0,0.05) 2px,
+      rgba(0,255,0,0.05) 4px
+    );
+    animation: scan-lines 0.1s linear infinite;
+    pointer-events: none;
+    z-index: 1000;
   }
 
   .shake {
@@ -221,6 +261,66 @@
     70% { transform: translateX(-3px) translateY(2px) rotate(0.5deg); }
     80% { transform: translateX(2px) translateY(1px) rotate(-0.5deg); }
     90% { transform: translateX(-1px) translateY(-2px) rotate(1deg); }
+  }
+
+  @keyframes broken-tv {
+    0% { transform: translateX(0); filter: hue-rotate(0deg) saturate(1); }
+    10% { transform: translateX(-2px); filter: hue-rotate(90deg) saturate(2); }
+    20% { transform: translateX(2px); filter: hue-rotate(180deg) saturate(0.5); }
+    30% { transform: translateX(-1px) scaleX(1.01); filter: hue-rotate(270deg) saturate(3); }
+    40% { transform: translateX(1px) scaleX(0.99); filter: hue-rotate(0deg) saturate(1); }
+    50% { transform: translateX(-3px) skewX(0.5deg); filter: hue-rotate(45deg) saturate(1.5); }
+    60% { transform: translateX(2px) skewX(-0.5deg); filter: hue-rotate(135deg) saturate(0.8); }
+    70% { transform: translateX(-1px); filter: hue-rotate(225deg) saturate(2.5); }
+    80% { transform: translateX(1px) scaleY(1.01); filter: hue-rotate(315deg) saturate(1.2); }
+    90% { transform: translateX(-2px) scaleY(0.99); filter: hue-rotate(90deg) saturate(1.8); }
+    100% { transform: translateX(0); filter: hue-rotate(0deg) saturate(1); }
+  }
+
+  @keyframes static-noise {
+    0% { background-position: 0 0; opacity: 0.03; }
+    10% { background-position: -5px -10px; opacity: 0.08; }
+    20% { background-position: 10px 5px; opacity: 0.02; }
+    30% { background-position: -15px 8px; opacity: 0.1; }
+    40% { background-position: 8px -12px; opacity: 0.05; }
+    50% { background-position: -3px 15px; opacity: 0.07; }
+    60% { background-position: 12px -5px; opacity: 0.04; }
+    70% { background-position: -8px -8px; opacity: 0.09; }
+    80% { background-position: 5px 12px; opacity: 0.03; }
+    90% { background-position: -12px 3px; opacity: 0.06; }
+    100% { background-position: 0 0; opacity: 0.03; }
+  }
+
+  @keyframes tv-glitch {
+    0% { 
+      transform: translate(0); 
+      filter: hue-rotate(0deg) contrast(1) brightness(1);
+    }
+    5% { 
+      transform: translate(-2px, 1px) scaleX(1.02); 
+      filter: hue-rotate(90deg) contrast(1.5) brightness(1.3);
+    }
+    10% { 
+      transform: translate(1px, -1px) scaleY(1.01); 
+      filter: hue-rotate(180deg) contrast(0.8) brightness(0.7);
+    }
+    15% { 
+      transform: translate(-1px, 2px) skewX(1deg); 
+      filter: hue-rotate(270deg) contrast(2) brightness(1.5);
+    }
+    20% { 
+      transform: translate(2px, -2px) skewY(0.5deg); 
+      filter: hue-rotate(0deg) contrast(0.5) brightness(2);
+    }
+    100% { 
+      transform: translate(0); 
+      filter: hue-rotate(0deg) contrast(1) brightness(1);
+    }
+  }
+
+  @keyframes scan-lines {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
   }
 
   .game-canvas {
